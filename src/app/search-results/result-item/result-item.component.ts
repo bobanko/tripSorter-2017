@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Duration, ResultItem } from './result-item';
+import { Deal } from '../../services/deal';
 
 
 @Component({
@@ -9,7 +9,7 @@ import { Duration, ResultItem } from './result-item';
 })
 export class ResultItemComponent implements OnInit {
 
-  @Input('item') resultItem: ResultItem;
+  @Input('item') deal: Deal;
 
   constructor() {
 

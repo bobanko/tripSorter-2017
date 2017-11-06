@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { SearchFormComponent } from './search-form/search-form.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { ResultItemComponent } from './search-results/result-item/result-item.component';
+import { DealsService } from './services/deals.service';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { ResultItemComponent } from './search-results/result-item/result-item.co
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [DealsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
