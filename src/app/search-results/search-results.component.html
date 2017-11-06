@@ -1,13 +1,16 @@
 <form class="search-results flex--col">
 
-  <ul class="result-list">
-    <li class="result-item">
-      
-    </li>
+  <div class="result-list">
+    <app-result-item  *ngFor="let item of results" [item]="item"></app-result-item>
+  </div>
 
-  </ul>
+  <div class="total flex--row flex--space">
+    <div class="total__label text-cap">total</div>
+    <div class="total__time">08h15</div>
+    <div class="total__cost">543$</div>
+  </div>
 
-  <button type="button" class="flex--center tt-cap">
+  <button type="button" class="flex--center text-cap">
     <i class="material-icons">replay</i>
     reset
   </button>
