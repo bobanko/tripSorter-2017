@@ -1,9 +1,9 @@
 <form class="search-form flex--col">
-  <select name="from">
-    <option>Kyiv</option>
+  <select name="departure">
+    <option *ngFor="let city of departureCities" value="{{city}}">{{city}}</option>
   </select>
-  <select name="to">
-    <option>Kyiv</option>
+  <select name="arrival">
+    <option *ngFor="let city of arrivalCities" value="{{city}}">{{city}}</option>
   </select>
 
   <div class="flex--row text-cap">

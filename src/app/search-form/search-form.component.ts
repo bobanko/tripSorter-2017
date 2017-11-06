@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {CitiesService} from '../services/cities.service';
 
 @Component({
   selector: 'app-search-form',
@@ -7,7 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchFormComponent implements OnInit {
 
-  constructor() { }
+  departureCities: string[];
+  arrivalCities: string[];
+
+
+  constructor(private citiesService: CitiesService) {
+    citiesService.getDepartureCities()
+      .then(cities => this.departureCities = cities);
+    citiesService.getArrivalCities()
+      .then(cities => this.arrivalCities = cities);
+  }
 
   ngOnInit() {
   }
