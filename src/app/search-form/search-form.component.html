@@ -1,0 +1,26 @@
+<form class="search-form flex--col">
+  <select name="from">
+    <option>Kyiv</option>
+  </select>
+  <select name="to">
+    <option>Kyiv</option>
+  </select>
+
+  <div class="flex--row tt-cap">
+    <label class="sort-select flex--row">
+      <input class="sort-select__radio" type="radio" checked
+             name="sortType" value="cheapest" >
+      <div class="sort-select__text">cheapest</div>
+    </label>
+    <label class="sort-select flex--row">
+      <input class="sort-select__radio" type="radio"
+             name="sortType" value="fastest">
+      <div class="sort-select__text">fastest</div>
+    </label>
+  </div>
+
+  <button type="button" class="flex--center tt-cap">
+    <i class="material-icons">search</i>
+    Search
+  </button>
+</form>
