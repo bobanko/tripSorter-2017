@@ -1,28 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+@import 'flex-helpers';
 
 * {
   font-family: 'Roboto', sans-serif;
   box-sizing: border-box;
 }
 
-.flex--col {
-  display: flex;
-  flex-direction: column;
-}
-
-.flex--row {
-  display: flex;
-  flex-direction: row;
-}
-
-.flex--center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.tt-cap{
+.text-cap {
   text-transform: capitalize;
+}
+
+.text--small {
+  font-size: small;
 }
 
 /* button */
@@ -47,7 +36,8 @@ button {
   }
 }
 
-form {
+.search-results,
+.search-form {
   width: 200px;
   margin: 0px auto;
 }
