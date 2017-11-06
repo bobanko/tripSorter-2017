@@ -6,6 +6,7 @@ import { SearchFormComponent } from './search-form/search-form.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { ResultItemComponent } from './search-results/result-item/result-item.component';
 import { DealsService } from './services/deals.service';
+import {CitiesService} from './services/cities.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { DealsService } from './services/deals.service';
   imports: [
     BrowserModule
   ],
-  providers: [DealsService],
+  providers: [DealsService, CitiesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
