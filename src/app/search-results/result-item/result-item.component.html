@@ -1,0 +1,33 @@
+<div class="result-item">
+  <div class="flex--row flex--space">
+    <div class="flex--row flex-center">
+      <div class="result-item__departure text-cap">paris</div>
+      <i class="material-icons">arrow_forward</i>
+      <div class="result-item__arrival text-cap">berlin</div>
+    </div>
+    <div class="flex--row">
+      <div class="result-item__cost">{{resultItem.cost}}</div>
+      <i class="material-icons">euro_symbol</i>
+    </div>
+  </div>
+
+  <div class="flex--row flex--space text--small">
+
+    <div class="flex--row">
+      <i class="material-icons">directions_{{resultItem.transport}}</i>
+      <div class="result-item__transport">
+        {{resultItem.transport}}
+      </div>
+    </div>
+
+    <div class="result-item__reference">
+      {{resultItem.reference}}
+    </div>
+    <span>for</span>
+    <div class="result-item__duration">
+      {{ resultItem.duration}}
+    </div>
+  </div>
+
+
+</div>
