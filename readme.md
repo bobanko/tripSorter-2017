@@ -2,6 +2,8 @@
 
 ## DEMO - https://bobanko.github.io/tripSorter
 
+## Task Description - https://github.com/bobanko/tripSorter/blob/master/myCRM_Trip%20Sorter_Frontend.pdf
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.0.
 
