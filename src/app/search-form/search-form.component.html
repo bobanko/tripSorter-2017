@@ -1,25 +1,33 @@
-<form class="search-form flex--col">
-  <select name="departure">
-    <option *ngFor="let city of departureCities" value="{{city}}">{{city}}</option>
-  </select>
-  <select name="arrival">
-    <option *ngFor="let city of arrivalCities" value="{{city}}">{{city}}</option>
-  </select>
+<form class="search-form flex--col"
+      (ngSubmit)="search(searchParams)">
+  <div class="flex--col">
+    <select name="departure"
+            [(ngModel)]="searchParams.departure">
+      <option *ngFor="let city of departureCities" [value]="city">{{city}}</option>
+    </select>
+    <select name="arrival" [(ngModel)]="searchParams.arrival">
+      <option *ngFor="let city of arrivalCities" [value]="city">{{city}}</option>
+    </select>
+  </div>
 
   <div class="flex--row text-cap">
     <label class="sort-select flex--row">
-      <input class="sort-select__radio" type="radio" checked
-             name="sortType" value="cheapest" >
+      <input class="sort-select__radio" type="radio"
+             [(ngModel)]="searchParams.sortType"
+             name="sortType" value="cheapest">
       <div class="sort-select__text">cheapest</div>
     </label>
     <label class="sort-select flex--row">
       <input class="sort-select__radio" type="radio"
+             [(ngModel)]="searchParams.sortType"
              name="sortType" value="fastest">
       <div class="sort-select__text">fastest</div>
     </label>
   </div>
 
-  <button type="button" class="flex--center text-cap">
+  <button type="submit"
+          class="flex--center text-cap"
+          (click)="search(arrival,departure)">
     <i class="material-icons">search</i>
     Search
   </button>
