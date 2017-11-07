@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Deal } from '../../services/deal';
+import {Component, Input, OnInit} from '@angular/core';
+import {Deal} from '../../services/deal';
 
 
 @Component({
