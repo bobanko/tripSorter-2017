@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {CitiesService} from './cities.service';
 import {DealsService} from './deals.service';
 import {Deal} from './deal';
+import {observable} from "rxjs/symbol/observable";
 
 
 export class SearchParams {
@@ -49,23 +50,20 @@ function getMinDistanceNode(nodes: Node[]) {
 @Injectable()
 export class SearchService {
 
+  searchResults: Deal[] = [];
   nodes: Node[];
   edges: Edge[];
 
   constructor(private citiesService: CitiesService,
               private dealsService: DealsService) {
-    Promise.all([
-      this.dealsService.getDeals(),
-      this.citiesService.getAllCities()
-    ]).then(([deals, cities]) => this.initGraph(deals, cities));
   }
 
-  initGraph(deals: Deal[], cities: string[]) {
+  initGraph(deals: Deal[], cities: string[], getWeight: (deal: Deal) => number) {
     this.nodes = cities.map(city => new Node(city));
 
     this.edges = deals.map(deal => {
       return new Edge(
-        deal, deal.cost, // todo: add similar for duration
+        deal, getWeight(deal), // todo: add similar for duration
         this.nodes.find(x => x.name === deal.departure),
         this.nodes.find(x => x.name === deal.arrival));
     });
@@ -75,7 +73,8 @@ export class SearchService {
     await Promise.all([
       this.dealsService.getDeals(),
       this.citiesService.getAllCities()
-    ]).then(([deals, cities]) => this.initGraph(deals, cities));
+    ]).then(([deals, cities]) => this.initGraph(deals, cities,
+      (deal) => deal.cost));
 
 
     const fromNode = this.nodes.find(node => node.name === searchParams.departure);
@@ -97,12 +96,13 @@ export class SearchService {
       node.isOut = true;
     }
 
-    // console.log(this.nodes);
+    const resultDeals: Deal[] = [];
 
-    // find path
     for (let edge = toNode.cameBy; edge !== null; edge = edge.from.cameBy) {
-      console.log(edge._deal);
+      resultDeals.push(edge._deal);
     }
+
+    return resultDeals;
 
   }
 
