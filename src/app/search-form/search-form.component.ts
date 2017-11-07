@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {CitiesService} from '../services/cities.service';
 import {SearchParams, SearchService} from '../services/search.service';
 
+
 @Component({
   selector: 'app-search-form',
   templateUrl: './search-form.component.html',
