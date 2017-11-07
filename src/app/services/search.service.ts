@@ -49,8 +49,6 @@ function getMinDistanceNode(nodes: Node[]) {
 
 @Injectable()
 export class SearchService {
-
-  searchResults: Deal[] = [];
   nodes: Node[];
   edges: Edge[];
 
@@ -70,11 +68,16 @@ export class SearchService {
   }
 
   async search(searchParams: SearchParams) {
+    const sortBy = {
+      fastest: (deal) => deal.duration,
+      cheapest: (deal) => deal.cost
+    };
+
     await Promise.all([
       this.dealsService.getDeals(),
       this.citiesService.getAllCities()
     ]).then(([deals, cities]) => this.initGraph(deals, cities,
-      (deal) => deal.cost));
+      sortBy[searchParams.sortType]));
 
 
     const fromNode = this.nodes.find(node => node.name === searchParams.departure);
@@ -102,7 +105,7 @@ export class SearchService {
       resultDeals.push(edge._deal);
     }
 
-    return resultDeals;
+    return resultDeals.reverse();
 
   }
 
