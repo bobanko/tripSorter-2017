@@ -1,5 +1,9 @@
 const minInHour = 60;
 
+function two(value: number) {
+  return String(value).length < 2 ? `0${value}` : value;
+}
+
 export class Duration {
   h: number;
   m: number;
@@ -10,7 +14,7 @@ export class Duration {
   }
 
   toString() {
-    return `${this.h}h${this.m}`;
+    return `${two(this.h)}h${two(this.m)}`;
   }
 
   valueOf() {
