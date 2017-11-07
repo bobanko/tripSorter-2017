@@ -24,14 +24,19 @@ export class CitiesService {
   getDepartureCities(): Promise<string[]> {
     return this.dealsService.getDeals()
       .then(deals => deals.map(deal => deal.departure))
-      .then(onlyUnique);
-      // .then(sortAsc);
+      .then(onlyUnique)
+      .then(sortAsc);
   }
 
   getArrivalCities(): Promise<string[]> {
     return this.dealsService.getDeals()
       .then(deals => deals.map(deal => deal.arrival))
-      .then(onlyUnique);
-      // .then(sortAsc);
+      .then(onlyUnique)
+      .then(sortAsc);
+  }
+
+  getAllCities(): Promise<string[]> {
+    // todo: impl
+    return this.getDepartureCities();
   }
 }
