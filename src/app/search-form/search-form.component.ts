@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {CitiesService} from '../services/cities.service';
-import {SearchParams, SearchService} from '../services/search.service';
+import {SearchParams} from '../services/search.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class SearchFormComponent {
   searchParams: SearchParams = new SearchParams();
 
   constructor(private citiesService: CitiesService,
-              private searchService: SearchService) {
+              private router: Router) {
     citiesService.getDepartureCities()
       .then(cities => {
         this.departureCities = cities;
@@ -32,7 +33,6 @@ export class SearchFormComponent {
   }
 
   search(searchParams: SearchParams) {
-    this.searchService.search(searchParams);
-    // todo: show/redirect to results
+    this.router.navigate(['/results', searchParams]);
   }
 }
