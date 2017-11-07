@@ -8,6 +8,7 @@ import {ResultItemComponent} from './search-results/result-item/result-item.comp
 import {DealsService} from './services/deals.service';
 import {CitiesService} from './services/cities.service';
 import {SearchService} from './services/search.service';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {SearchService} from './services/search.service';
     ResultItemComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [DealsService, CitiesService, SearchService],
   bootstrap: [AppComponent]
