@@ -8,7 +8,18 @@ import {ResultItemComponent} from './search-results/result-item/result-item.comp
 import {DealsService} from './services/deals.service';
 import {CitiesService} from './services/cities.service';
 import {SearchService} from './services/search.service';
-import {FormsModule} from "@angular/forms";
+import {FormsModule} from '@angular/forms';
+import {RouterModule, Routes} from '@angular/router';
+
+
+const appRoutes: Routes = [
+  {path: 'search', component: SearchFormComponent},
+  {
+    path: 'results', component: SearchResultsComponent,
+    data: {title: 'Heroes List'}
+  },
+  {path: '**', redirectTo: '/search'}
+];
 
 @NgModule({
   declarations: [
@@ -19,9 +30,11 @@ import {FormsModule} from "@angular/forms";
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [DealsService, CitiesService, SearchService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
