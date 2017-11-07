@@ -1,18 +1,27 @@
 <form class="search-results flex--col">
 
-  <div class="result-list">
-    <app-result-item  *ngFor="let item of results" [item]="item"></app-result-item>
-  </div>
+  <div *ngIf="results.length>0"
+       class="result-list">
+    <app-result-item *ngFor="let item of results" [item]="item"></app-result-item>
 
-  <div class="total flex--row flex--space">
-    <div class="total__label text-cap">total</div>
-    <div class="total__time">08h15</div>
-    <div class="flex-row">
-      <div class="total__cost">543€</div>
+    <div class="total flex--row flex--space">
+      <div class="total__label text-cap">total</div>
+      <div class="total__time">08h15</div>
+      <div class="flex-row">
+        <div class="total__cost">{{total.cost}}€</div>
+      </div>
     </div>
   </div>
 
-  <button type="button" class="flex--center text-cap">
+  <div *ngIf="results.length===0"
+       class="flex--row flex--center">
+    <i class="material-icons">directions_run</i>
+    <span>No deals found</span>
+    <i class="material-icons">weekend</i>
+  </div>
+
+  <button type="button" class="flex--center text-cap"
+          [routerLink]="['/search']">
     <i class="material-icons">replay</i>
     reset
   </button>
