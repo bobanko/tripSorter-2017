@@ -43,6 +43,14 @@ export class Deal implements IDeal {
   reference: string;
   transport: string;
 
+  get hasDiscount() {
+    return this.discount > 0;
+  }
+
+  get discountCost() {
+    return this.cost * (1 - this.discount / 100);
+  }
+
   constructor({transport, departure, arrival, duration, cost, discount, reference}: IDeal) {
     this.transport = transport;
     this.departure = departure;

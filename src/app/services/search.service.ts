@@ -70,7 +70,7 @@ export class SearchService {
   async search(searchParams: SearchParams) {
     const sortBy = {
       fastest: (deal) => deal.duration,
-      cheapest: (deal) => deal.cost
+      cheapest: (deal) => deal.discountCost
     };
 
     await Promise.all([
