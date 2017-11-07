@@ -1,3 +1,5 @@
+const minInHour = 60;
+
 export class Duration {
   h: number;
   m: number;
@@ -9,6 +11,10 @@ export class Duration {
 
   toString() {
     return `${this.h}h${this.m}`;
+  }
+
+  valueOf() {
+    return this.h * minInHour + this.m;
   }
 }
 
