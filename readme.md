@@ -1,6 +1,6 @@
 # TripSorter
 
-##DEMO
+## DEMO
 
 https://bobanko.github.io/tripSorter
 
