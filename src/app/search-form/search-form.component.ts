@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CitiesService} from '../services/cities.service';
 import {SearchParams} from '../services/search.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 
 @Component({
@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
   templateUrl: './search-form.component.html',
   styleUrls: ['./search-form.component.less']
 })
-export class SearchFormComponent {
+export class SearchFormComponent implements OnInit {
 
   departureCities: string[];
   arrivalCities: string[];
@@ -17,19 +17,27 @@ export class SearchFormComponent {
   searchParams: SearchParams = new SearchParams();
 
   constructor(private citiesService: CitiesService,
-              private router: Router) {
-    citiesService.getDepartureCities()
-      .then(cities => {
-        this.departureCities = cities;
-        this.searchParams.departure = cities[0];
-      });
-    citiesService.getArrivalCities()
-      .then(cities => {
-        this.arrivalCities = cities;
-        this.searchParams.arrival = cities[0];
-      });
+              private router: Router,
+              private route: ActivatedRoute) {
+  }
 
-    this.searchParams.sortType = 'cheapest';
+  ngOnInit() {
+    this.route.params.subscribe((params: SearchParams) => {
+
+      this.citiesService.getDepartureCities()
+        .then(cities => {
+          this.departureCities = cities;
+          this.searchParams.departure = params.departure || cities[0];
+        });
+
+      this.citiesService.getArrivalCities()
+        .then(cities => {
+          this.arrivalCities = cities;
+          this.searchParams.arrival = params.arrival || cities[0];
+        });
+
+      this.searchParams.sortType = params.sortType || 'cheapest';
+    });
   }
 
   search(searchParams: SearchParams) {

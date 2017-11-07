@@ -18,12 +18,15 @@ export class SearchResultsComponent implements OnInit {
   totalDiscountedCost: number;
   totalDuration: Duration;
 
+  searchParams: SearchParams;
+
   constructor(private searchService: SearchService,
               private route: ActivatedRoute) {
   }
 
   ngOnInit() {
     this.route.params.subscribe((params: SearchParams) => {
+      this.searchParams = params;
       this.searchService.search(params).then(results => {
         if (results.length === 0) {
           this.notFound = true;
