@@ -5,14 +5,10 @@
       <i class="material-icons">arrow_forward</i>
       <div class="result-item__arrival text-cap">{{deal.arrival}}</div>
     </div>
-    <div *ngIf="deal.hasDiscount"
-         class="result-item__cost flex--col">
-      <div class="price--old">{{deal.cost}}€</div>
-      <div class="price--new">{{deal.discountCost}}€</div>
-    </div>
-    <div *ngIf="!deal.hasDiscount"
-         class="result-item__cost">
-      {{deal.cost}}€
+
+    <div class="result-item__cost flex--col">
+      <div class="price--old" *ngIf="deal.hasDiscount">{{deal.cost}}€</div>
+      <div>{{deal.discountCost}}€</div>
     </div>
   </div>
 
