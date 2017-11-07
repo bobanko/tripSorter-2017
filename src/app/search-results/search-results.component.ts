@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {DealsService} from '../services/deals.service';
 import {Deal, Duration} from '../services/deal';
 import {SearchParams, SearchService} from '../services/search.service';
 import {ActivatedRoute} from '@angular/router';
@@ -16,6 +15,7 @@ export class SearchResultsComponent implements OnInit {
   notFound = false
 
   totalCost: number;
+  totalDiscountedCost: number;
   totalDuration: Duration;
 
   constructor(private searchService: SearchService,
@@ -30,8 +30,9 @@ export class SearchResultsComponent implements OnInit {
           return;
         }
         this.results = results;
-        // this.results.push(...deals);
         this.totalCost = results.reduce((sum, deal) => sum + deal.cost, 0);
+        this.totalDiscountedCost = results.reduce((sum, deal) => sum + deal.discountCost, 0);
+
         const durationMins = results.reduce((sum, deal) => sum + +deal.duration, 0);
 
         this.totalDuration = new Duration({

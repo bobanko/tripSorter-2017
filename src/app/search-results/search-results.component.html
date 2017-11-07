@@ -7,8 +7,11 @@
     <div class="total flex--row flex--space">
       <div class="total__label text-cap">total</div>
       <div class="total__time">{{totalDuration}}</div>
-      <div class="flex-row">
-        <div class="total__cost">{{totalCost}}€</div>
+      <div class="flex--col">
+        <div *ngIf="totalCost>totalDiscountedCost"
+             class="total__cost price--old">{{totalCost}}€
+        </div>
+        <div class="total__cost">{{totalDiscountedCost}}€</div>
       </div>
     </div>
   </div>
