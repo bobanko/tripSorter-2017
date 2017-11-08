@@ -12,7 +12,6 @@ import {ActivatedRoute} from '@angular/router';
 export class SearchResultsComponent implements OnInit {
 
   results: Deal[] = [];
-  notFound = false
 
   totalCost: number;
   totalDiscountedCost: number;
@@ -24,24 +23,34 @@ export class SearchResultsComponent implements OnInit {
               private route: ActivatedRoute) {
   }
 
+  getTotalCost(results: Deal[]): number {
+    return results.reduce((sum, deal) => sum + deal.cost, 0);
+  }
+
+  getTotalDiscountedCost(results: Deal[]): number {
+    return results.reduce((sum, deal) => sum + deal.discountCost, 0);
+  }
+
+  getTotalDuration(results: Deal[]): Duration {
+    const durationMins = results.reduce((sum, deal) => sum + +deal.duration, 0);
+
+    return new Duration({
+      h: Math.trunc(durationMins / 60), m: durationMins % 60
+    });
+  }
+
   ngOnInit() {
     this.route.params.subscribe((params: SearchParams) => {
       this.searchParams = params;
       this.searchService.search(params).then(results => {
         if (results.length === 0) {
-          this.notFound = true;
           return;
         }
+
         this.results = results;
-        this.totalCost = results.reduce((sum, deal) => sum + deal.cost, 0);
-        this.totalDiscountedCost = results.reduce((sum, deal) => sum + deal.discountCost, 0);
-
-        const durationMins = results.reduce((sum, deal) => sum + +deal.duration, 0);
-
-        this.totalDuration = new Duration({
-          h: Math.trunc(durationMins / 60), m: durationMins % 60
-        });
-
+        this.totalCost = this.getTotalCost(results);
+        this.totalDiscountedCost = this.getTotalDiscountedCost(results);
+        this.totalDuration = this.getTotalDuration(results);
       });
     });
   }
