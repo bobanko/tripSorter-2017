@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Deal} from '../../services/deal';
 
 
@@ -7,16 +7,6 @@ import {Deal} from '../../services/deal';
   templateUrl: './result-item.component.html',
   styleUrls: ['./result-item.component.less']
 })
-export class ResultItemComponent implements OnInit {
-
+export class ResultItemComponent {
   @Input('item') deal: Deal;
-
-  constructor() {
-
-  }
-
-
-  ngOnInit() {
-  }
-
 }

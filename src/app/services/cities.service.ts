@@ -36,7 +36,7 @@ export class CitiesService {
   }
 
   getAllCities(): Promise<string[]> {
-    // todo: impl
+    // todo: impl for case when arrival and departure not the same
     return this.getDepartureCities();
   }
 }
