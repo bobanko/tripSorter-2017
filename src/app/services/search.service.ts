@@ -2,8 +2,6 @@ import {Injectable} from '@angular/core';
 import {CitiesService} from './cities.service';
 import {DealsService} from './deals.service';
 import {Deal} from './deal';
-import {observable} from "rxjs/symbol/observable";
-
 
 export class SearchParams {
   departure: string;
@@ -38,13 +36,16 @@ function getNodeEdges(node: Node, allEdges: Edge[]) {
   return allEdges.filter(edge => edge.from === node && !edge.isUsed);
 }
 
-function getMinDistanceNode(nodes: Node[]) {
-  const notOutNodes = nodes.filter(n => !n.isOut);
-
-  if (notOutNodes.length < 2) {
-    return notOutNodes.pop();
+function getNearestNode(nodes: Node[]): Node {
+  if (nodes.length < 2) {
+    return nodes[0];
   }
-  return notOutNodes.reduce((n1, n2) => n1.minDistance < n2.minDistance ? n1 : n2);
+  return nodes.reduce((n1, n2) => n1.minDistance < n2.minDistance ? n1 : n2);
+}
+
+function getMinDistanceNode(nodes: Node[]): Node {
+  const activeNodes = nodes.filter(n => !n.isOut);
+  return getNearestNode(activeNodes);
 }
 
 @Injectable()
@@ -106,7 +107,5 @@ export class SearchService {
     }
 
     return resultDeals.reverse();
-
   }
-
 }

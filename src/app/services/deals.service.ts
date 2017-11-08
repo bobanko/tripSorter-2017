@@ -1,23 +1,22 @@
-import { Injectable } from '@angular/core';
-import { Deal, IDeal } from './deal';
+import {Injectable} from '@angular/core';
+import {Deal, IDeal} from './deal';
 
 import dealsResponse from './deals.response.json';
 
-type TDealsRaw = {
+interface IDealsRaw {
   currency: string;
   deals: IDeal[];
-};
+}
 
 @Injectable()
 export class DealsService {
 
-  getDealsFromServer(): Promise<TDealsRaw> {
+  getDealsFromServer(): Promise<IDealsRaw> {
     return Promise.resolve(dealsResponse);
   }
 
-  mapDeals(dealsRaw: TDealsRaw): Deal[] {
-    let result = dealsRaw.deals.map(raw => new Deal(raw));
-    return result;
+  mapDeals(dealsRaw: IDealsRaw): Deal[] {
+    return dealsRaw.deals.map(raw => new Deal(raw));
   }
 
   getDeals(): Promise<Deal[]> {
