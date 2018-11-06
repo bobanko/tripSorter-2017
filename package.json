@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --base-href https://bobanko.github.io/tripSorter/",
+    "build": "ng build --prod --base-href https://bobanko.github.io/tripSorter-2017/dist/",
     "publish": "angular-cli-ghpages",
     "test": "ng test",
     "lint": "ng lint",
