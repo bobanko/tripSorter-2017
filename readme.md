@@ -1,6 +1,6 @@
 # TripSorter
 
-## DEMO - https://bobanko.github.io/tripSorter
+## DEMO - https://bobanko.github.io/tripSorter-2017/dist/index.html
 
 ## Task Description - [myCRM Trip Sorter Frontend.pdf](https://github.com/bobanko/tripSorter/blob/master/myCRM_Trip%20Sorter_Frontend.pdf)
 
